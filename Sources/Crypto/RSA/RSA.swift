@@ -62,12 +62,12 @@ public final class RSA {
 
     /// Signs the supplied input (in format specified by `format`).
     ///
-    ///     let ciphertext = try RSA.SHA512.sign("vapor", algorithm: .sha256,key: .private(pem: ...))
+    ///     let ciphertext = try RSA().sign("vapor", algorithm: .sha256, key: .private(pem: ...))
     ///
     /// - parameters:
     ///     - input: Plaintext message or message digest to sign.
-    ///     - format: Format of the input, either plaintext message or digest.
     ///     - algorithm: Digest algorithm to use.
+    ///     - format: Format of the input, either plaintext message or digest.
     ///     - key: `RSAKey` to use for signing this data.
     /// - returns: RSA signature for this data.
     /// - throws: `CryptoError` if signing fails or data conversion fails.
@@ -117,10 +117,11 @@ public final class RSA {
 
     /// Returns `true` if the supplied signature was created by signing the plaintext data.
     ///
-    ///     try RSA.SHA512.verify(ciphertext, signs: "vapor", key: .public(pem: ...))
+    ///     try RSA().verify(ciphertext, algorithm: .sha256, signs: "vapor", key: .public(pem: ...))
     ///
     /// - parameters:
     ///     - signature: RSA signature from `sign(_:key:)` method.
+    ///     - algorithm: Digest algorithm to use.
     ///     - input: Plaintext message or message digest to verify against.
     ///     - format: Format of the input, either plaintext message or digest.
     ///     - key: `RSAKey` to use for signing this data.
@@ -153,7 +154,7 @@ public final class RSA {
 
     /// Dencrypts the supplied input.
     ///
-    ///     let decryptedData = try RSA().sign("vapor", padding: .pkcs1 ,key: .private(pem: ...))
+    ///     let decryptedData = try RSA().decrypt("vapor", padding: .pkcs1 ,key: .private(pem: ...))
     ///
     /// - parameters:
     ///     - input: Encrypted message to decrypt.
